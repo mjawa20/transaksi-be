@@ -1,6 +1,5 @@
 const sql = require("./db.js");
 
-// constructor
 const Transaction = function (transaction) {
     this.kode = transaction.kode;
     this.tgl = transaction.tgl;
@@ -37,7 +36,6 @@ Transaction.findById = (id, result) => {
             return;
         }
 
-        // not found Transaction with the id
         result({ kind: "not_found" }, null);
     });
 };
@@ -93,7 +91,6 @@ Transaction.remove = (id, result) => {
         }
 
         if (res.affectedRows == 0) {
-            // not found Transaction with the id
             result({ kind: "not_found" }, null);
             return;
         }

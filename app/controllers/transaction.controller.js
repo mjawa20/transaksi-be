@@ -1,16 +1,13 @@
 const { uid } = require("uid");
 const Transaction = require("../models/transaction.model.js");
 
-// Create and Save a new Transaction
 exports.create = (req, res) => {
-    // Validate request
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
     }
 
-    // Create a Transaction
     const transaction = new Transaction({
         kode: uid(4),
         nama: req.body.nama,
@@ -22,7 +19,6 @@ exports.create = (req, res) => {
         total_bayar: req.body.total_bayar,
     });
 
-    // Save Transaction in the database
     Transaction.create(transaction, (err, data) => {
         if (err)
             res.status(500).send({
@@ -33,7 +29,6 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Transactions from the database (with condition).
 exports.findAll = (req, res) => {
     const title = req.query.title;
 
@@ -47,7 +42,6 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Transaction by Id
 exports.findOne = (req, res) => {
     Transaction.findById(req.params.id, (err, data) => {
         if (err) {
@@ -64,11 +58,8 @@ exports.findOne = (req, res) => {
     });
 };
 
-// find all published Transactions
 
-// Update a Transaction identified by the id in the request
 exports.update = (req, res) => {
-    // Validate Request
     if (!req.body) {
         res.status(400).send({
             message: "Content can not be empty!"
@@ -96,7 +87,6 @@ exports.update = (req, res) => {
     );
 };
 
-// Delete a Transaction with the specified id in the request
 exports.delete = (req, res) => {
     Transaction.remove(req.params.id, (err, data) => {
         if (err) {
@@ -113,7 +103,6 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Transactions from the database.
 exports.deleteAll = (req, res) => {
     Transaction.removeAll((err, data) => {
         if (err)

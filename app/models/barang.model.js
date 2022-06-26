@@ -34,7 +34,6 @@ Product.findById = (id, result) => {
       return;
     }
 
-    // not found Product with the id
     result({ kind: "not_found" }, null);
   });
 };
@@ -70,7 +69,6 @@ Product.updateById = (id, barang, result) => {
       }
 
       if (res.affectedRows == 0) {
-        // not found Product with the id
         result({ kind: "not_found" }, null);
         return;
       }
@@ -90,7 +88,6 @@ Product.remove = (id, result) => {
     }
 
     if (res.affectedRows == 0) {
-      // not found Product with the id
       result({ kind: "not_found" }, null);
       return;
     }

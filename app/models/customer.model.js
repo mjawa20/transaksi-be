@@ -1,6 +1,5 @@
 const sql = require("./db.js");
 
-// constructor
 const Customer = function (customer) {
   this.kode = customer.kode;
   this.nama = customer.nama;
@@ -34,7 +33,6 @@ Customer.findById = (id, result) => {
       return;
     }
 
-    // not found Customer with the id
     result({ kind: "not_found" }, null);
   });
 };
@@ -70,7 +68,6 @@ Customer.updateById = (id, customer, result) => {
       }
 
       if (res.affectedRows == 0) {
-        // not found Customer with the id
         result({ kind: "not_found" }, null);
         return;
       }
@@ -90,7 +87,6 @@ Customer.remove = (id, result) => {
     }
 
     if (res.affectedRows == 0) {
-      // not found Customer with the id
       result({ kind: "not_found" }, null);
       return;
     }

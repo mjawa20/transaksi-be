@@ -1,23 +1,19 @@
 const { uid } = require("uid");
 const Product = require("../models/barang.model.js");
 
-// Create and Save a new Product
 exports.create = (req, res) => {
-  // Validate request
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
   }
 
-  // Create a Product
   const product = new Product({
     kode: uid(8),
     nama: req.body.nama,
     harga: req.body.harga
   });
 
-  // Save Product in the database
   Product.create(product, (err, data) => {
     if (err)
       res.status(500).send({
@@ -28,7 +24,6 @@ exports.create = (req, res) => {
   });
 };
 
-// Retrieve all Products from the database (with condition).
 exports.findAll = (req, res) => {
   const title = req.query.title;
 
@@ -42,7 +37,6 @@ exports.findAll = (req, res) => {
   });
 };
 
-// Find a single Product by Id
 exports.findOne = (req, res) => {
   Product.findById(req.params.id, (err, data) => {
     if (err) {
@@ -59,11 +53,7 @@ exports.findOne = (req, res) => {
   });
 };
 
-// find all published Products
-
-// Update a Product identified by the id in the request
 exports.update = (req, res) => {
-  // Validate Request
   if (!req.body) {
     res.status(400).send({
       message: "Content can not be empty!"
@@ -91,7 +81,6 @@ exports.update = (req, res) => {
   );
 };
 
-// Delete a Product with the specified id in the request
 exports.delete = (req, res) => {
   Product.remove(req.params.id, (err, data) => {
     if (err) {
@@ -108,7 +97,6 @@ exports.delete = (req, res) => {
   });
 };
 
-// Delete all Products from the database.
 exports.deleteAll = (req, res) => {
   Product.removeAll((err, data) => {
     if (err)
