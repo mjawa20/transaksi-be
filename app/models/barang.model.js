@@ -59,8 +59,8 @@ Product.getAll = (title, result) => {
 
 Product.updateById = (id, barang, result) => {
   sql.query(
-    "UPDATE m_barangs SET title = ?, nama = ?, harga = ? WHERE id = ?",
-    [barang.kode, barang.nama, barang.harga, id],
+    "UPDATE m_barangs SET nama = ?, harga = ? WHERE id = ?",
+    [barang.nama, barang.harga, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
